@@ -18,6 +18,6 @@ class DataModel: ObservableObject {
     
     func createTodo(name:String, body:String){
         
-        self.todoList.append(Todo(id: UUID(), name: name, body: body))
+        self.todoList.append(Todo( name: name, body: body))
     }
 }
