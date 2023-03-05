@@ -14,16 +14,20 @@ struct AddTodoView: View {
     @State var todoBody = ""
     
     @Binding var showView:Bool
+    @State var showDetail = false
     
     var body: some View {
         VStack{
             Text("Create New Todo")
             Form{
                 TextField("Name", text: $name)
-                Section{
-                    TextEditor(text: $todoBody)
-                }header: {
-                    Text("Todo Body Info")
+                Toggle("Todo Details", isOn: $showDetail)
+                if showDetail{
+                    Section{
+                        TextEditor(text: $todoBody)
+                    }header: {
+                        Text("Todo Body Info")
+                    }
                 }
             }
             .frame(height: 300)
