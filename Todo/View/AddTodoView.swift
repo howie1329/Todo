@@ -39,7 +39,7 @@ struct AddTodoView: View {
             }
             Spacer()
         }
-        .padding()
+        .padding() 
     }
 }
 
