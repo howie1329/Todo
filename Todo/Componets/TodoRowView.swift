@@ -30,7 +30,7 @@ struct TodoRowView: View {
                 if let idNum = model.todoList.firstIndex(where: {$0.id == item.id}){
                     
                     model.todoList[idNum].completed.toggle()
-                    model.todoList.shuffle()
+                    model.refreshList()
                 }
             } label: {
                 Image(systemName: "checkmark.circle")

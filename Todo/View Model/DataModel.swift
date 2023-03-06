@@ -16,6 +16,12 @@ class DataModel: ObservableObject {
         createTodo(name: "Second Todo", body: "Clean Room")
     }
     
+    func refreshList(){
+        var holdArr: [Todo] = []
+        holdArr.append(contentsOf: self.todoList)
+        self.todoList = holdArr
+    }
+    
     func createTodo(name:String, body:String){
         
         self.todoList.append(Todo( name: name, body: body))

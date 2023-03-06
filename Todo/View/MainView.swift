@@ -26,6 +26,9 @@ struct MainView: View {
                         }
                     }
                 }
+                .refreshable(action: {
+                    model.refreshList()
+                })
                 .searchable(text: $searchBar)
                 
             }
