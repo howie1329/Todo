@@ -18,9 +18,15 @@ struct TodoRowView: View {
                     .strikethrough()
                 Text(item.body)
                     .strikethrough()
+                ForEach(item.details, id:\.self){
+                    Text($0.capitalized)
+                }
             }else{
                 Text(item.name)
                 Text(item.body)
+                ForEach(item.details, id:\.self){
+                    Text($0.capitalized)
+                }
             }
             Spacer()
         }

@@ -9,11 +9,12 @@ import Foundation
 
 class Todo: Identifiable, ObservableObject{
     
-    init(name:String, body:String){
+    init(name:String, body:String, details:[String]){
         self.id = UUID()
         self.name = name
         self.body = body
         self.completed = false
+        self.details = details
     }
     
     
@@ -21,4 +22,5 @@ class Todo: Identifiable, ObservableObject{
     var name:String
     var body:String
     var completed:Bool
+    var details:[String]
 }

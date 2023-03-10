@@ -12,9 +12,11 @@ struct AddTodoView: View {
     
     @State var name = ""
     @State var todoBody = ""
+    @State var details: [String] = []
     
     @Binding var showView:Bool
     @State var showDetail = false
+    @State var numDetail = 0
     
     var body: some View {
         VStack{
@@ -29,10 +31,20 @@ struct AddTodoView: View {
                         Text("Todo Body Info")
                     }
                 }
+                ForEach(0...5){item in
+                    TextField("Detail", text: $details[item])
+                }
+                Button {
+                    numDetail += 1
+                } label: {
+                    Text("Add More Detials")
+                }
+
+                
             }
             .frame(height: 300)
             Button {
-                model.createTodo(name: name, body: todoBody)
+                model.createTodo(name: name, body: todoBody, detail: details)
                 showView.toggle()
             } label: {
                 Text("Add Todo")
