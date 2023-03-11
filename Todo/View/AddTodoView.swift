@@ -30,9 +30,16 @@ struct AddTodoView: View {
                     }header: {
                         Text("Todo Body Info")
                     }
-                }
-                ForEach(0...5){item in
-                    TextField("Detail", text: $details[item])
+                    Text("Here")
+                        .onTapGesture {
+                            details.append("")
+                        }
+                    List{
+                        ForEach($details,id: \.self){
+                            TextEditor(text: $0)
+                        }
+                    }
+                    
                 }
                 Button {
                     numDetail += 1
