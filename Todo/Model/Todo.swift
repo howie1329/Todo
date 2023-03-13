@@ -15,6 +15,7 @@ class Todo: Identifiable, ObservableObject{
         self.body = body
         self.completed = false
         self.details = details
+        
     }
     
     
