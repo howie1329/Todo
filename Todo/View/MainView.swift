@@ -10,16 +10,22 @@ import SwiftUI
 struct MainView: View {
     @EnvironmentObject var dm:DataModel
     
-    
     @State var showAddView = false
-    
+    @State var monthlyView = false
     @State var currentTodo:TodoEntity? = nil
     @State var presentationDetents = PresentationDetent.medium
     
     var body: some View {
         NavigationView{
             VStack {
-                MainViewList()
+                HStack{
+                    if monthlyView {
+                        Stepper("MonthStepper \(monthArr[dm.currentMonth - 1])", value: $dm.currentMonth, in: 1...12)
+                    }
+                }
+                .padding()
+                MainViewList(monthlyView:monthlyView)
+                    
             }
             .navigationBarTitle("Todo List")
             .sheet(isPresented: $showAddView, content: {
@@ -28,6 +34,12 @@ struct MainView: View {
             })
             .toolbar{
                 HStack{
+                    Button {
+                        monthlyView.toggle()
+                    } label: {
+                        Text("MV")
+                    }.buttonStyle(.borderedProminent)
+                    
                     Button {
                         showAddView.toggle()
                     } label: {
