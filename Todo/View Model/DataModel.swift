@@ -8,16 +8,8 @@
 import CoreData
 import Foundation
 
-enum CalanderErrors: Error {
-    case noConvertMonth
-    case noConvertDay
-}
-
-let monthArr = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
 class DataModel: ObservableObject {
-    
-   
     
     let container: NSPersistentContainer
     @Published var savedEntities: [TodoEntity] = []
@@ -34,31 +26,13 @@ class DataModel: ObservableObject {
             }
             
         }
-        currentMonth = Calendar.current.dateComponents([.month], from: currentDate).month ?? 0
-        currentDay = Calendar.current.dateComponents([.day], from: currentDate).day ?? 0
+        currentMonth = try! convertDateToMonthNumber(inputDate: currentDate)
+        currentDay = try! convertDateToDayNumber(inputDate: currentDate)
+        
         fetchTodos()
     }
     
-    func convertDateToMonthNumber(inputDate:Date)throws -> Int{
-        
-        let monthNumber = Calendar.current.dateComponents([.month], from: inputDate)
-        
-        if let number = monthNumber.month{
-            return number
-        }else{
-            throw CalanderErrors.noConvertMonth
-        }
-    }
     
-    func convertDateToDayNumber(inputDate:Date) throws -> Int {
-        let dayNumber = Calendar.current.dateComponents([.day], from: inputDate)
-        
-        if let number = dayNumber.day{
-            return number
-        }else{
-            throw CalanderErrors.noConvertDay
-        }
-    }
     
     func fetchTodos(){
         let request = NSFetchRequest<TodoEntity>(entityName: "TodoEntity")

@@ -20,7 +20,7 @@ struct MainView: View {
             VStack {
                 HStack{
                     if monthlyView {
-                        Stepper("MonthStepper \(monthArr[dm.currentMonth - 1])", value: $dm.currentMonth, in: 1...12)
+                        Stepper("\(monthArr[dm.currentMonth - 1])", value: $dm.currentMonth, in: 1...12)
                     }
                 }
                 .padding()
