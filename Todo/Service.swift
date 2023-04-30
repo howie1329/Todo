@@ -12,6 +12,12 @@ enum CalanderErrors: Error {
     case noConvertDay
 }
 
+enum todoPriority: String, CaseIterable {
+    case low = "low"
+    case normal = "normal"
+    case high = "high"
+}
+
 let monthArr = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
 func convertDateToMonthNumber(inputDate:Date)throws -> Int{

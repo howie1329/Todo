@@ -52,6 +52,7 @@ class DataModel: ObservableObject {
         newTodo.title = Todos.name
         newTodo.body = Todos.body
         newTodo.date = Todos.dueDate
+        newTodo.priority = Todos.priority.rawValue
         
         do{
             newTodo.monthNumber = Int64(try convertDateToMonthNumber(inputDate: Todos.dueDate))

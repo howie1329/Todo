@@ -12,6 +12,19 @@ struct TodoRowView: View {
     var item:TodoEntity
     var body: some View {
         HStack(){
+            switch item.priority{
+            case todoPriority.low.rawValue:
+                Image(systemName: "exclamationmark")
+                    .foregroundColor(.yellow)
+            case todoPriority.normal.rawValue:
+                Image(systemName: "exclamationmark.2")
+                    .foregroundColor(.orange)
+            case todoPriority.high.rawValue:
+                Image(systemName: "exclamationmark.3")
+                    .foregroundColor(.red)
+            default:
+                Image(systemName: "exclamationmark")
+            }
             Spacer()
             VStack{
                 Text(item.title ?? "Unknown")

@@ -18,11 +18,19 @@ struct AddTodoView: View {
     @State var showDetail = false
     @State var numDetail = 0
     
+    @State var priority = todoPriority.normal
+    
     var body: some View {
         VStack{
             Text("Create New Todo")
             Form{
                 TextField("Name", text: $name)
+                Picker("Priority", selection: $priority) {
+                    ForEach(todoPriority.allCases, id:\.rawValue){item in
+                        Text("\(item.rawValue)").tag(item)
+                    }
+                }
+                .pickerStyle(.segmented)
                 
                 DatePicker("dueDate",selection: $dueDate)
                 
@@ -38,7 +46,7 @@ struct AddTodoView: View {
             }
             .frame(height: 300)
             Button {
-                dm.addTodo(Todos: Todo(name: name, body: todoBody, date: dueDate))
+                dm.addTodo(Todos: Todo(name: name, body: todoBody, date: dueDate, priority: priority))
                 showView.toggle()
             } label: {
                 Text("Add Todo")
