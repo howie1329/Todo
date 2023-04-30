@@ -11,49 +11,64 @@ struct TodoRowView: View {
     @EnvironmentObject var dm:DataModel
     var item:TodoEntity
     var body: some View {
-        HStack(){
-            switch item.priority{
-            case todoPriority.low.rawValue:
-                Image(systemName: "exclamationmark")
-                    .foregroundColor(.yellow)
-            case todoPriority.normal.rawValue:
-                Image(systemName: "exclamationmark.2")
-                    .foregroundColor(.orange)
-            case todoPriority.high.rawValue:
-                Image(systemName: "exclamationmark.3")
-                    .foregroundColor(.red)
-            default:
-                Image(systemName: "exclamationmark")
-            }
-            Spacer()
-            VStack{
-                Text(item.title ?? "Unknown")
-                    .bold()
-                if let todoDate = item.date {
-                    Text("Due Date: \(todoDate.formatted(date: .numeric, time: .shortened))")
+        VStack(alignment:.center){
+            HStack{
+                Button {
+                    print("Edit Button")
+                } label: {
+                    Image(systemName: "pencil")
+                        .frame(width:15)
+                        .clipped()
                 }
-                if item.body != ""{
-                    Text(item.body ?? "No Details")
-                }
-            }
-            Spacer()
-            VStack(alignment:.center){
-                if item.isCompleted{
-                    Button {
-                        dm.updateTodo(entity: item)
-                    } label: {
-                        Image(systemName: "circle.fill")
-                            .foregroundColor(.green)
+                .buttonStyle(.bordered)
+                Spacer()
+                VStack{
+                    HStack(spacing:10){
+                        Text(item.title ?? "Unknown")
+                            .bold()
+                            .frame(width:100)
+                        switch item.priority{
+                        case todoPriority.low.rawValue:
+                            Image(systemName: "exclamationmark")
+                                .foregroundColor(.yellow)
+                        case todoPriority.normal.rawValue:
+                            Image(systemName: "exclamationmark.2")
+                                .foregroundColor(.orange)
+                        case todoPriority.high.rawValue:
+                            Image(systemName: "exclamationmark.3")
+                                .foregroundColor(.red)
+                        default:
+                            Image(systemName: "exclamationmark")
+                        }
                     }
-                } else{
-                    Button {
-                        dm.updateTodo(entity: item)
-                    } label: {
-                        Image(systemName: "circle")
-                            .foregroundColor(.red)
+                    if let todoDate = item.date {
+                        Text("Due Date: \(todoDate.formatted(date: .numeric, time: .omitted))")
+                    }
+                    if item.body != ""{
+                        Text(item.body ?? "No Details")
+                    }
+                }
+                
+                Spacer()
+                VStack{
+                    if item.isCompleted{
+                        Button {
+                            dm.updateTodo(entity: item)
+                        } label: {
+                            Image(systemName: "circle.fill")
+                                .foregroundColor(.green)
+                        }
+                    } else{
+                        Button {
+                            dm.updateTodo(entity: item)
+                        } label: {
+                            Image(systemName: "circle")
+                                .foregroundColor(.red)
+                        }
                     }
                 }
             }
         }
+        .frame(maxWidth: .infinity)
     }
 }
