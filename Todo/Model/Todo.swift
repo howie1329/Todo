@@ -9,13 +9,12 @@ import Foundation
 
 class Todo: Identifiable, ObservableObject{
     
-    init(name:String, body:String, details:[String]){
+    init(name:String, body:String, date:Date){
         self.id = UUID()
         self.name = name
         self.body = body
         self.completed = false
-        self.details = details
-        
+        self.dueDate = date
     }
     
     
@@ -23,5 +22,5 @@ class Todo: Identifiable, ObservableObject{
     var name:String
     var body:String
     var completed:Bool
-    var details:[String]
+    var dueDate:Date
 }

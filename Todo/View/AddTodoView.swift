@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct AddTodoView: View {
-    @EnvironmentObject var model:DataModel
+    @EnvironmentObject var dm:DataModel
     
     @State var name = ""
     @State var todoBody = ""
-    @State var details: [String] = []
+    @State var dueDate = Date.now
     
     @Binding var showView:Bool
     @State var showDetail = false
@@ -23,6 +23,9 @@ struct AddTodoView: View {
             Text("Create New Todo")
             Form{
                 TextField("Name", text: $name)
+                
+                DatePicker("dueDate",selection: $dueDate)
+                
                 Toggle("Todo Details", isOn: $showDetail)
                 if showDetail{
                     Section{
@@ -30,28 +33,12 @@ struct AddTodoView: View {
                     }header: {
                         Text("Todo Body Info")
                     }
-                    Text("Here")
-                        .onTapGesture {
-                            details.append("")
-                        }
-                    List{
-                        ForEach($details,id: \.self){
-                            TextEditor(text: $0)
-                        }
-                    }
                     
                 }
-                Button {
-                    numDetail += 1
-                } label: {
-                    Text("Add More Detials")
-                }
-
-                
             }
             .frame(height: 300)
             Button {
-                model.createTodo(name: name, body: todoBody, detail: details)
+                dm.addTodo(Todos: Todo(name: name, body: todoBody, date: dueDate))
                 showView.toggle()
             } label: {
                 Text("Add Todo")

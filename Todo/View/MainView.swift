@@ -8,34 +8,23 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var model:DataModel
+    @EnvironmentObject var dm:DataModel
     
-    @State var searchBar = ""
+    
     @State var showAddView = false
+    
+    @State var currentTodo:TodoEntity? = nil
     @State var presentationDetents = PresentationDetent.medium
     
     var body: some View {
         NavigationView{
             VStack {
-                List {
-                    ForEach(model.todoList){ item in
-                        if item.name.contains(searchBar){
-                            TodoRowView(item: item)
-                        } else if searchBar == ""{
-                            TodoRowView(item: item)
-                        }
-                    }
-                }
-                .refreshable(action: {
-                    model.refreshList()
-                })
-                .searchable(text: $searchBar)
-                
+                MainViewList()
             }
             .navigationBarTitle("Todo List")
             .sheet(isPresented: $showAddView, content: {
                 AddTodoView(showView:$showAddView)
-                    .presentationDetents([.medium], selection: $presentationDetents)
+                    .presentationDetents([.medium, .large], selection: $presentationDetents)
             })
             .toolbar{
                 HStack{

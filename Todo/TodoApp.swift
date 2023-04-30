@@ -9,10 +9,12 @@ import SwiftUI
 
 @main
 struct TodoApp: App {
+    @StateObject var dm = DataModel()
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(DataModel())
+                .environmentObject(dm)
+                .preferredColorScheme(.dark)
         }
     }
 }

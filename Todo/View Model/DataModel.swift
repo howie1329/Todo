@@ -5,25 +5,66 @@
 //  Created by Howard Thomas on 3/4/23.
 //
 
+import CoreData
 import Foundation
 
 class DataModel: ObservableObject {
     
-    @Published var todoList: [Todo] = []
+    let container: NSPersistentContainer
+    @Published var savedEntities: [TodoEntity] = []
+    
     
     init(){
-        createTodo(name: "First Todo", body: "HomeWork", detail: ["Math Work","English Work"])
-        createTodo(name: "Second Todo", body: "Clean Room", detail: [])
+        container = NSPersistentContainer(name: "TodoContainer")
+        container.loadPersistentStores { (description, error) in
+            if let error = error {
+                print("Error loading core data \(error)")
+            }
+            
+        }
+        fetchTodos()
     }
     
-    func refreshList(){
-        var holdArr: [Todo] = []
-        holdArr.append(contentsOf: self.todoList)
-        self.todoList = holdArr
-    }
-    
-    func createTodo(name:String, body:String, detail:[String]){
+    func fetchTodos(){
+        let request = NSFetchRequest<TodoEntity>(entityName: "TodoEntity")
         
-        self.todoList.append(Todo( name: name, body: body, details: detail))
+        do{
+           savedEntities = try container.viewContext.fetch(request)
+        } catch let error {
+            print("Error Fetching... \(error)")
+        }
+        
+    }
+    
+    func addTodo(Todos: Todo){
+        let newTodo = TodoEntity(context: container.viewContext)
+        newTodo.id = UUID()
+        newTodo.isCompleted = Todos.completed
+        newTodo.title = Todos.name
+        newTodo.body = Todos.body
+        newTodo.date = Todos.dueDate
+        saveData()
+    }
+    
+    func deleteFruit(indexSet: IndexSet){
+       guard let index = indexSet.first else {return}
+        let entiy = savedEntities[index]
+        container.viewContext.delete(entiy)
+        saveData()
+    }
+    
+    func updateTodo(entity: TodoEntity){
+        entity.isCompleted.toggle()
+        saveData()
+        
+    }
+    
+    func saveData(){
+        do{
+            try container.viewContext.save()
+            fetchTodos()
+        } catch let error{
+            print("Error Saving \(error)")
+        }
     }
 }

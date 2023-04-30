@@ -8,52 +8,39 @@
 import SwiftUI
 
 struct TodoRowView: View {
-    @EnvironmentObject var model:DataModel
-    var item:Todo
+    @EnvironmentObject var dm:DataModel
+    var item:TodoEntity
     var body: some View {
-        HStack(spacing:20){
+        HStack(){
             Spacer()
-            if item.completed{
-                Text(item.name)
-                    .strikethrough()
-                Text(item.body)
-                    .strikethrough()
-                ForEach(item.details, id:\.self){
-                    Text($0.capitalized)
+            VStack{
+                Text(item.title ?? "Unknown")
+                    .bold()
+                if let todoDate = item.date {
+                    Text("Due Date: \(todoDate.formatted(date: .numeric, time: .shortened))")
                 }
-            }else{
-                Text(item.name)
-                Text(item.body)
-                ForEach(item.details, id:\.self){
-                    Text($0.capitalized)
+                if item.body != ""{
+                    Text(item.body ?? "No Details")
                 }
             }
             Spacer()
-        }
-        .swipeActions(edge:.leading){
-            Button {
-                
-                if let idNum = model.todoList.firstIndex(where: {$0.id == item.id}){
-                    
-                    model.todoList[idNum].completed.toggle()
-                    model.refreshList()
+            VStack(alignment:.center){
+                if item.isCompleted{
+                    Button {
+                        dm.updateTodo(entity: item)
+                    } label: {
+                        Image(systemName: "circle.fill")
+                            .foregroundColor(.green)
+                    }
+                } else{
+                    Button {
+                        dm.updateTodo(entity: item)
+                    } label: {
+                        Image(systemName: "circle")
+                            .foregroundColor(.red)
+                    }
                 }
-            } label: {
-                Image(systemName: "checkmark.circle")
             }
-            .tint(.green)
-
-        }
-        .swipeActions(edge:.trailing) {
-            Button(role:.destructive) {
-                model.todoList.removeAll { Todo in
-                    Todo.id == item.id
-                }
-                print(model.todoList)
-            } label: {
-                Image(systemName: "trash.circle.fill")
-            }
-            
         }
     }
 }
