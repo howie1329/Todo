@@ -25,7 +25,7 @@ struct MainViewList: View {
                     }
                 } else{
                     if searchBar == ""{
-                        TodoRowView( item: item)
+                        TodoRowView(item: item)
                     }else if item.title!.contains(searchBar){
                         TodoRowView(item: item)
                     }

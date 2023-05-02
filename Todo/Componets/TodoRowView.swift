@@ -10,11 +10,12 @@ import SwiftUI
 struct TodoRowView: View {
     @EnvironmentObject var dm:DataModel
     var item:TodoEntity
+    @State var editView = false
     var body: some View {
         VStack(alignment:.center){
             HStack{
                 Button {
-                    print("Edit Button")
+                    editView.toggle()
                 } label: {
                     Image(systemName: "pencil")
                         .frame(width:15)
@@ -53,14 +54,14 @@ struct TodoRowView: View {
                 VStack{
                     if item.isCompleted{
                         Button {
-                            dm.updateTodo(entity: item)
+                            dm.toggleComplete(entity: item)
                         } label: {
                             Image(systemName: "circle.fill")
                                 .foregroundColor(.green)
                         }
                     } else{
                         Button {
-                            dm.updateTodo(entity: item)
+                            dm.toggleComplete(entity: item)
                         } label: {
                             Image(systemName: "circle")
                                 .foregroundColor(.red)
@@ -70,5 +71,9 @@ struct TodoRowView: View {
             }
         }
         .frame(maxWidth: .infinity)
+        .sheet(isPresented: $editView) {
+            EditTodoView(item: item, editView: $editView)
+                .presentationDetents([.medium])
+        }
     }
 }

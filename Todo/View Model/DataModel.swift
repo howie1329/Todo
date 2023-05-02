@@ -71,10 +71,16 @@ class DataModel: ObservableObject {
         saveData()
     }
     
-    func updateTodo(entity: TodoEntity){
+    func toggleComplete(entity: TodoEntity){
         entity.isCompleted.toggle()
         saveData()
         
+    }
+    
+    func updateTodo(entity: TodoEntity, title:String, body:String){
+        entity.title = title
+        entity.body = body
+        saveData()
     }
     
     func saveData(){
