@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		F317557A29FC8FA5002CC59E /* TodoContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F317557829FC8FA5002CC59E /* TodoContainer.xcdatamodeld */; };
 		F317557C29FCB76A002CC59E /* TodoDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F317557B29FCB76A002CC59E /* TodoDetail.swift */; };
+		F35CB8B32A02489400669DA4 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB8B22A02489400669DA4 /* MainTabView.swift */; };
+		F35CB8B52A0249D300669DA4 /* NotesMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB8B42A0249D300669DA4 /* NotesMainView.swift */; };
+		F35CB8B72A024AC900669DA4 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB8B62A024AC900669DA4 /* NoteModel.swift */; };
+		F35CB8B92A024BE600669DA4 /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB8B82A024BE600669DA4 /* NoteDetailView.swift */; };
+		F35CB8BB2A0253FF00669DA4 /* AddNewNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB8BA2A0253FF00669DA4 /* AddNewNoteView.swift */; };
 		F376495629FCFEE9006AEC23 /* MainViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376495529FCFEE9006AEC23 /* MainViewList.swift */; };
 		F376495829FE3ABF006AEC23 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F376495729FE3ABF006AEC23 /* Service.swift */; };
 		F3BD174D2A008E190031C7A3 /* EditTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD174C2A008E190031C7A3 /* EditTodoView.swift */; };
@@ -25,6 +30,11 @@
 /* Begin PBXFileReference section */
 		F317557929FC8FA5002CC59E /* Todo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Todo.xcdatamodel; sourceTree = "<group>"; };
 		F317557B29FCB76A002CC59E /* TodoDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDetail.swift; sourceTree = "<group>"; };
+		F35CB8B22A02489400669DA4 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		F35CB8B42A0249D300669DA4 /* NotesMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesMainView.swift; sourceTree = "<group>"; };
+		F35CB8B62A024AC900669DA4 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		F35CB8B82A024BE600669DA4 /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
+		F35CB8BA2A0253FF00669DA4 /* AddNewNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewNoteView.swift; sourceTree = "<group>"; };
 		F376495529FCFEE9006AEC23 /* MainViewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewList.swift; sourceTree = "<group>"; };
 		F376495729FE3ABF006AEC23 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		F3BD174C2A008E190031C7A3 /* EditTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoView.swift; sourceTree = "<group>"; };
@@ -50,6 +60,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F35CB8BC2A025A4500669DA4 /* Note Section */ = {
+			isa = PBXGroup;
+			children = (
+				F35CB8BA2A0253FF00669DA4 /* AddNewNoteView.swift */,
+				F35CB8B82A024BE600669DA4 /* NoteDetailView.swift */,
+				F35CB8B42A0249D300669DA4 /* NotesMainView.swift */,
+			);
+			path = "Note Section";
+			sourceTree = "<group>";
+		};
+		F35CB8BD2A025A5900669DA4 /* Todo Section */ = {
+			isa = PBXGroup;
+			children = (
+				F3FA1D9F29B30CE40093B908 /* MainView.swift */,
+				F3FA1DB429B3149A0093B908 /* AddTodoView.swift */,
+				F317557B29FCB76A002CC59E /* TodoDetail.swift */,
+				F3BD174C2A008E190031C7A3 /* EditTodoView.swift */,
+			);
+			path = "Todo Section";
+			sourceTree = "<group>";
+		};
 		F3FA1D9129B30CE40093B908 = {
 			isa = PBXGroup;
 			children = (
@@ -93,10 +124,9 @@
 		F3FA1DAB29B30CFA0093B908 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F3FA1D9F29B30CE40093B908 /* MainView.swift */,
-				F3FA1DB429B3149A0093B908 /* AddTodoView.swift */,
-				F317557B29FCB76A002CC59E /* TodoDetail.swift */,
-				F3BD174C2A008E190031C7A3 /* EditTodoView.swift */,
+				F35CB8BD2A025A5900669DA4 /* Todo Section */,
+				F35CB8BC2A025A4500669DA4 /* Note Section */,
+				F35CB8B22A02489400669DA4 /* MainTabView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -113,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				F3FA1DAE29B30D160093B908 /* Todo.swift */,
+				F35CB8B62A024AC900669DA4 /* NoteModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -199,13 +230,18 @@
 				F3FA1DA029B30CE40093B908 /* MainView.swift in Sources */,
 				F317557A29FC8FA5002CC59E /* TodoContainer.xcdatamodeld in Sources */,
 				F3FA1DB829B326840093B908 /* TodoRowView.swift in Sources */,
+				F35CB8BB2A0253FF00669DA4 /* AddNewNoteView.swift in Sources */,
+				F35CB8B72A024AC900669DA4 /* NoteModel.swift in Sources */,
 				F376495629FCFEE9006AEC23 /* MainViewList.swift in Sources */,
 				F3FA1DB129B30D610093B908 /* DataModel.swift in Sources */,
+				F35CB8B92A024BE600669DA4 /* NoteDetailView.swift in Sources */,
 				F317557C29FCB76A002CC59E /* TodoDetail.swift in Sources */,
 				F3FA1DAF29B30D160093B908 /* Todo.swift in Sources */,
 				F3BD174D2A008E190031C7A3 /* EditTodoView.swift in Sources */,
 				F376495829FE3ABF006AEC23 /* Service.swift in Sources */,
 				F3FA1D9E29B30CE40093B908 /* TodoApp.swift in Sources */,
+				F35CB8B52A0249D300669DA4 /* NotesMainView.swift in Sources */,
+				F35CB8B32A02489400669DA4 /* MainTabView.swift in Sources */,
 				F3FA1DB529B3149A0093B908 /* AddTodoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

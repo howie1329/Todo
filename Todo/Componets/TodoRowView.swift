@@ -46,7 +46,9 @@ struct TodoRowView: View {
                         Text("Due Date: \(todoDate.formatted(date: .numeric, time: .omitted))")
                     }
                     if item.body != ""{
-                        Text(item.body ?? "No Details")
+                        if let todoBody = item.body{
+                            Text(todoBody)
+                        }
                     }
                 }
                 

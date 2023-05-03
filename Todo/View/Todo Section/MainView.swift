@@ -23,7 +23,6 @@ struct MainView: View {
                         Stepper("\(monthArr[dm.currentMonth - 1])", value: $dm.currentMonth, in: 1...12)
                     }
                 }
-                .padding()
                 MainViewList(monthlyView:monthlyView)
                     
             }

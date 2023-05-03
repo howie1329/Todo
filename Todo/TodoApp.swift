@@ -12,7 +12,7 @@ struct TodoApp: App {
     @StateObject var dm = DataModel()
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainTabView()
                 .environmentObject(dm)
                 .preferredColorScheme(.dark)
         }

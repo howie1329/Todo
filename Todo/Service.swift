@@ -18,6 +18,16 @@ enum todoPriority: String, CaseIterable {
     case high = "high"
 }
 
+func getAttributedString(_ markdown: String) -> AttributedString {
+    do {
+        let attributedString = try AttributedString(markdown: markdown)
+        return attributedString
+    } catch {
+        print("Couldn't parse: \(error)")
+    }
+    return AttributedString("Error parsing markdown")
+}
+
 let monthArr = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
 
 func convertDateToMonthNumber(inputDate:Date)throws -> Int{
